@@ -384,27 +384,22 @@ arguments
         |   '(' type ',' expressionList ','? ')'
         ;
 
-fragment
 relOp:
       '==' | '!=' | '<' | '<=' | '>' | '>=' .
       ;
 
-fragment
 addOp:
       '+' | '-' | '|' | '^'
       ;
 
-fragment
 mulOp:
     '*' | '/' | '%' | '<<' | '>>' | '&' | '&^'
     ;
 
-fragment
-unary_op:
+unaryOp:
     '+' | '-' | '!' | '^' | '*' | '&' | '<-'
     ;
 
-fragment
 binaryOp:
       '||' | '&&' | relOp | addOp | mulOp
       ;
@@ -422,9 +417,21 @@ conversion
         ;
 
 emptyStmt: ;
+
 labeledStmt: label ':' statement;
-label: identifier;
+
+label: Identifier;
+
 expressionStmt: expression;
+
+incDecStmt: expression ( '++' | '--' );
+assignOp: (addOp | mulOp ) '=';
+assignment: expressionList assignOp expressionList;
+ifStmt: 'if' ( simpleStmt ';' ) expression block ( 'else' ( ifStmt | block ) ) ;
+
+
+goStmt: 'go' expression;
+
 
 statement
         :   declaration | labeledStmt | simpleStmt |
@@ -436,7 +443,17 @@ simpleStmt
         :    emptyStmt | expressionStmt | incDecStmt | assignment | shortVarDecl
         ;
 
-// there's a lot of missing stuff here
+returnStmt :
+        RETURN ( expressionList ) ;
+
+breakStmt :
+        BREAK ( label ) ;
+
+continueStmt:
+        CONTINUE ( label ) ;
+
+gotoStmt:
+        GOTO ( label ) ;
 
 forStmt
         :   FOR condition block
