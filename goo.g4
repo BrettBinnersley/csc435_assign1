@@ -6,7 +6,14 @@
 // This ANTLR4 grammar is based on the Go grammar provided here:
 //     https://golang.org/ref
 //
-// Author: Nigel Horspool, January 2016
+// Original Author: Nigel Horspool, January 2016
+//
+//
+// This file has been edited by the following students for the purpose of our assignment.
+//
+// Brett Binnersley, V00776751
+// Sebastien Guillemot, V????????
+//
 
 grammar Goo;
 
