@@ -12,7 +12,7 @@
 // This file has been edited by the following students for the purpose of our assignment.
 //
 // Brett Binnersley, V00776751
-// Sebastien Guillemot, V????????
+// Sebastien Guillemot, V00741620
 //
 
 grammar Goo;
@@ -481,8 +481,6 @@ rangeClause
         :   expressionList '=' RANGE expression
         |   identifierList ':=' RANGE expression
         ;
-
-// A lot more stuff is missing here
 
 // the goal symbol of this grammar
 sourceFile
