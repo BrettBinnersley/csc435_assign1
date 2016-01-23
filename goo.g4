@@ -520,28 +520,119 @@ RBRACE:     '}' ;
 SEMI:       ';' ;
 
 Identifier
-        :   [a-zA-Z]+  // 'REPLACE ME 1'
+        :   [a-zA-Z][a-zA-Z0-9]*
         ;
 
 ImaginaryLit
-        :   'REPLACE ME 2'
+        :   ([0-9] |
+            FloatLit) 'i'
         ;
 
 IntLit
-        :   'REPLACE ME 3'
+        :   [1-9][0-9]* |
+            '0'[0-7]* |
+            '0' [xX] [0-9a-fA-F]+
+        ;
+
+fragment
+DECIMALS : [0-9]+
+        ;
+
+fragment
+EXPONENT : [eE][+-]? DECIMALS
         ;
 
 FloatLit
-        :   'REPLACE ME 4'
+        :   DECIMALS '.' DECIMALS EXPONENT |
+            DECIMALS EXPONENT |
+            '.' DECIMALS EXPONENT
+        ;
+
+
+//TODO UseCamelCase.
+
+fragment
+HexDigit :
+        [0-9a-fA-F]
+        ;
+
+fragment
+OctalDigit :
+        [0-7]
+        ;
+
+fragment
+LittleUVal:
+        '\\u' HexDigit HexDigit HexDigit HexDigit
+        ;
+
+fragment
+BigUVal:
+        '\\U' HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit HexDigit
+        ;
+
+fragment
+EscapeChar:
+        '\\' ( 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' | '\\' | '\'' | '"' )
+        ;
+
+fragment
+UnicodeChar :
+        ~('\u000A')
+        ;
+
+fragment
+UncodeSpace :
+        '\u000A'
+        ;
+
+fragment
+UnicodeVal :
+        UnicodeChar |
+        LittleUVal |
+        BigUVal |
+        EscapeChar
+        ;
+
+fragment
+OctalByteVal :
+        '\\' OctalDigit OctalDigit OctalDigit
+        ;
+
+fragment
+HexByteVal :
+        '\\x' HexDigit HexDigit
+        ;
+
+fragment
+ByteVal :
+        OctalByteVal |
+        HexByteVal
+        ;
+
+fragment
+RawStringLit :
+        '\'' (UnicodeChar | UncodeSpace)* '\''
+        ;
+
+fragment
+InterpretedStringLit :
+          '"' (
+            UnicodeVal |
+            ByteVal )*
+          '"'
         ;
 
 StringLit
-        :   '\"' // REPLACE ME 5
+        :   InterpretedStringLit |
+            RawStringLit
         ;
 
+
 RuneLit
-        :   '\''  // REPLACE ME 6
+        :   '\'' (UnicodeVal | ByteVal)* '\''
         ;
+
 
 // This rule is copied from the Antlr4 grammar for Java8
 Whitespace
