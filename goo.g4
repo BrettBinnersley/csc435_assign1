@@ -351,7 +351,13 @@ value
         ;
 
 primaryExpr
-        :   'EXPAND ME TO ONE OR MORE RULES 1'
+        : operand |
+        	conversion |
+        	primaryExpr selector |
+        	primaryExpr index |
+        	primaryExpr slice |
+        	primaryExpr typeAssertion |
+        	primaryExpr arguments
         ;
 
 selector
@@ -378,24 +384,56 @@ arguments
         |   '(' type ',' expressionList ','? ')'
         ;
 
+fragment
+relOp:
+      '==' | '!=' | '<' | '<=' | '>' | '>=' .
+      ;
+
+fragment
+addOp:
+      '+' | '-' | '|' | '^'
+      ;
+
+fragment
+mulOp:
+    '*' | '/' | '%' | '<<' | '>>' | '&' | '&^'
+    ;
+
+fragment
+unary_op:
+    '+' | '-' | '!' | '^' | '*' | '&' | '<-'
+    ;
+
+fragment
+binaryOp:
+      '||' | '&&' | relOp | addOp | mulOp
+      ;
+
 expression
-        :   'EXPAND ME TO ONE OR MORE RULES 2'
+        :   unaryExpr | expression binaryOp expression
         ;
 
 unaryExpr
-        :   'EXPAND ME TO ONE OR MORE RULES 3'
+        : primaryExpr | unaryOp unaryExpr
         ;
 
 conversion
         :   type '(' expression ','? ')'
         ;
 
+emptyStmt: ;
+labeledStmt: label ':' statement;
+label: identifier;
+expressionStmt: expression;
+
 statement
-        :   'EXPAND ME TO ONE OR MORE RULES 4'
+        :   declaration | labeledStmt | simpleStmt |
+            goStmt | returnStmt | breakStmt | continueStmt |
+            gotoStmt | block | ifStmt | forStmt
         ;
 
 simpleStmt
-        :   'EXPAND ME TO ONE OR MORE RULES 5'
+        :    emptyStmt | expressionStmt | incDecStmt | assignment | shortVarDecl
         ;
 
 // there's a lot of missing stuff here
