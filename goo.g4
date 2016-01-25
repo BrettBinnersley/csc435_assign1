@@ -597,12 +597,10 @@ EXPONENT : [eE][+-]? DECIMALS
 
 FloatLit
         :   DECIMALS '.' DECIMALS EXPONENT |
+            DECIMALS '.' DECIMALS |
             DECIMALS EXPONENT |
             '.' DECIMALS EXPONENT
         ;
-
-
-//TODO UseCamelCase.
 
 fragment
 HexDigit :
