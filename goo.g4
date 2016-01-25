@@ -577,7 +577,7 @@ Identifier
         ;
 
 ImaginaryLit
-        :   ([0-9] |
+        :   (DECIMALS |
             FloatLit) 'i'
         ;
 
