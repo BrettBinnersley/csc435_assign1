@@ -437,23 +437,8 @@ expressionStmt: expression;
 
 incDecStmt: expression ( '++' | '--' );
 assignment: expressionList assignOp expressionList;
-assignOp: (addOp | mulOp ) '=';
-ifStmt: 'if' ( simpleStmt ';' ) expression block ( 'else' ( ifStmt | block ) ) ;
-
-
-goStmt: 'go' expression;
-
-returnStmt :
-        RETURN ( expressionList ) ;
-
-breakStmt :
-        BREAK ( label ) ;
-
-continueStmt:
-        CONTINUE ( label ) ;
-
-gotoStmt:
-        GOTO ( label ) ;
+assignOp: (addOp | mulOp )? '=';
+ifStmt: 'if' ( simpleStmt ';' )? expression block ( 'else' ( ifStmt | block ) )? ;
 
 forStmt
         :   FOR condition block
@@ -481,6 +466,20 @@ rangeClause
         :   expressionList '=' RANGE expression
         |   identifierList ':=' RANGE expression
         ;
+		
+goStmt: 'go' expression;
+
+returnStmt :
+        RETURN ( expressionList )? ;
+
+breakStmt :
+        BREAK ( label )? ;
+
+continueStmt:
+        CONTINUE ( label )? ;
+
+gotoStmt:
+        GOTO label ;
 
 // the goal symbol of this grammar
 sourceFile
