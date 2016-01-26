@@ -351,6 +351,8 @@ value
         |   literalValue
         ;
 
+functionLit : 'func' function;
+
 primaryExpr
         : operand |
         	conversion |
