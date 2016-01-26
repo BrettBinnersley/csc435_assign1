@@ -1,5 +1,4 @@
-// Generated from Goo.g4 by ANTLR 4.5
-import org.antlr.v4.runtime.misc.NotNull;
+// Generated from Goo.g4 by ANTLR 4.5.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -538,6 +537,16 @@ public interface GooListener extends ParseTreeListener {
 	 */
 	void exitValue(GooParser.ValueContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GooParser#functionLit}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionLit(GooParser.FunctionLitContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GooParser#functionLit}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionLit(GooParser.FunctionLitContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GooParser#primaryExpr}.
 	 * @param ctx the parse tree
 	 */
@@ -598,6 +607,36 @@ public interface GooListener extends ParseTreeListener {
 	 */
 	void exitArguments(GooParser.ArgumentsContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GooParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpression(GooParser.ExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GooParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpression(GooParser.ExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GooParser#unaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterUnaryExpr(GooParser.UnaryExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GooParser#unaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitUnaryExpr(GooParser.UnaryExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GooParser#binaryOp}.
+	 * @param ctx the parse tree
+	 */
+	void enterBinaryOp(GooParser.BinaryOpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GooParser#binaryOp}.
+	 * @param ctx the parse tree
+	 */
+	void exitBinaryOp(GooParser.BinaryOpContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GooParser#relOp}.
 	 * @param ctx the parse tree
 	 */
@@ -638,36 +677,6 @@ public interface GooListener extends ParseTreeListener {
 	 */
 	void exitUnaryOp(GooParser.UnaryOpContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GooParser#binaryOp}.
-	 * @param ctx the parse tree
-	 */
-	void enterBinaryOp(GooParser.BinaryOpContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GooParser#binaryOp}.
-	 * @param ctx the parse tree
-	 */
-	void exitBinaryOp(GooParser.BinaryOpContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GooParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterExpression(GooParser.ExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GooParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitExpression(GooParser.ExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GooParser#unaryExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterUnaryExpr(GooParser.UnaryExprContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GooParser#unaryExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitUnaryExpr(GooParser.UnaryExprContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link GooParser#conversion}.
 	 * @param ctx the parse tree
 	 */
@@ -677,6 +686,26 @@ public interface GooListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitConversion(GooParser.ConversionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GooParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterStatement(GooParser.StatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GooParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitStatement(GooParser.StatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GooParser#simpleStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterSimpleStmt(GooParser.SimpleStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GooParser#simpleStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitSimpleStmt(GooParser.SimpleStmtContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GooParser#emptyStmt}.
 	 * @param ctx the parse tree
@@ -728,16 +757,6 @@ public interface GooListener extends ParseTreeListener {
 	 */
 	void exitIncDecStmt(GooParser.IncDecStmtContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GooParser#assignOp}.
-	 * @param ctx the parse tree
-	 */
-	void enterAssignOp(GooParser.AssignOpContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GooParser#assignOp}.
-	 * @param ctx the parse tree
-	 */
-	void exitAssignOp(GooParser.AssignOpContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link GooParser#assignment}.
 	 * @param ctx the parse tree
 	 */
@@ -748,6 +767,16 @@ public interface GooListener extends ParseTreeListener {
 	 */
 	void exitAssignment(GooParser.AssignmentContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GooParser#assignOp}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignOp(GooParser.AssignOpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GooParser#assignOp}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignOp(GooParser.AssignOpContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GooParser#ifStmt}.
 	 * @param ctx the parse tree
 	 */
@@ -757,76 +786,6 @@ public interface GooListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIfStmt(GooParser.IfStmtContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GooParser#goStmt}.
-	 * @param ctx the parse tree
-	 */
-	void enterGoStmt(GooParser.GoStmtContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GooParser#goStmt}.
-	 * @param ctx the parse tree
-	 */
-	void exitGoStmt(GooParser.GoStmtContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GooParser#statement}.
-	 * @param ctx the parse tree
-	 */
-	void enterStatement(GooParser.StatementContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GooParser#statement}.
-	 * @param ctx the parse tree
-	 */
-	void exitStatement(GooParser.StatementContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GooParser#simpleStmt}.
-	 * @param ctx the parse tree
-	 */
-	void enterSimpleStmt(GooParser.SimpleStmtContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GooParser#simpleStmt}.
-	 * @param ctx the parse tree
-	 */
-	void exitSimpleStmt(GooParser.SimpleStmtContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GooParser#returnStmt}.
-	 * @param ctx the parse tree
-	 */
-	void enterReturnStmt(GooParser.ReturnStmtContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GooParser#returnStmt}.
-	 * @param ctx the parse tree
-	 */
-	void exitReturnStmt(GooParser.ReturnStmtContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GooParser#breakStmt}.
-	 * @param ctx the parse tree
-	 */
-	void enterBreakStmt(GooParser.BreakStmtContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GooParser#breakStmt}.
-	 * @param ctx the parse tree
-	 */
-	void exitBreakStmt(GooParser.BreakStmtContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GooParser#continueStmt}.
-	 * @param ctx the parse tree
-	 */
-	void enterContinueStmt(GooParser.ContinueStmtContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GooParser#continueStmt}.
-	 * @param ctx the parse tree
-	 */
-	void exitContinueStmt(GooParser.ContinueStmtContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link GooParser#gotoStmt}.
-	 * @param ctx the parse tree
-	 */
-	void enterGotoStmt(GooParser.GotoStmtContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link GooParser#gotoStmt}.
-	 * @param ctx the parse tree
-	 */
-	void exitGotoStmt(GooParser.GotoStmtContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GooParser#forStmt}.
 	 * @param ctx the parse tree
@@ -887,6 +846,56 @@ public interface GooListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRangeClause(GooParser.RangeClauseContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GooParser#goStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterGoStmt(GooParser.GoStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GooParser#goStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitGoStmt(GooParser.GoStmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GooParser#returnStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturnStmt(GooParser.ReturnStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GooParser#returnStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturnStmt(GooParser.ReturnStmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GooParser#breakStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterBreakStmt(GooParser.BreakStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GooParser#breakStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitBreakStmt(GooParser.BreakStmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GooParser#continueStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterContinueStmt(GooParser.ContinueStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GooParser#continueStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitContinueStmt(GooParser.ContinueStmtContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GooParser#gotoStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterGotoStmt(GooParser.GotoStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GooParser#gotoStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitGotoStmt(GooParser.GotoStmtContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GooParser#sourceFile}.
 	 * @param ctx the parse tree

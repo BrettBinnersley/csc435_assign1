@@ -291,6 +291,7 @@ operand
 literal
         :   basicLit
         |   compositeLit
+		|   functionLit
         ;
 
 basicLit
@@ -350,6 +351,8 @@ value
         |   literalValue
         ;
 
+functionLit : 'func' function;
+
 primaryExpr
         : operand |
         	conversion |
@@ -384,8 +387,20 @@ arguments
         |   '(' type ',' expressionList ','? ')'
         ;
 
+expression
+        :   unaryExpr | expression binaryOp expression
+        ;
+
+unaryExpr
+        : primaryExpr | unaryOp unaryExpr
+        ;
+		
+binaryOp:
+      '||' | '&&' | relOp | addOp | mulOp
+      ;
+	  
 relOp:
-      '==' | '!=' | '<' | '<=' | '>' | '>=' .
+      '==' | '!=' | '<' | '<=' | '>' | '>='
       ;
 
 addOp:
@@ -397,41 +412,13 @@ mulOp:
     ;
 
 unaryOp:
-    '+' | '-' | '!' | '^' | '*' | '&' | '<-'
+    '+' | '-' | '!' | '^' | '*' | '&'
     ;
-
-binaryOp:
-      '||' | '&&' | relOp | addOp | mulOp
-      ;
-
-expression
-        :   unaryExpr | expression binaryOp expression
-        ;
-
-unaryExpr
-        : primaryExpr | unaryOp unaryExpr
-        ;
 
 conversion
         :   type '(' expression ','? ')'
         ;
-
-emptyStmt: ;
-
-labeledStmt: label ':' statement;
-
-label: Identifier;
-
-expressionStmt: expression;
-
-incDecStmt: expression ( '++' | '--' );
-assignOp: (addOp | mulOp ) '=';
-assignment: expressionList assignOp expressionList;
-ifStmt: 'if' ( simpleStmt ';' ) expression block ( 'else' ( ifStmt | block ) ) ;
-
-
-goStmt: 'go' expression;
-
+		
 
 statement
         :   declaration | labeledStmt | simpleStmt |
@@ -440,20 +427,20 @@ statement
         ;
 
 simpleStmt
-        :    emptyStmt | expressionStmt | incDecStmt | assignment | shortVarDecl
+        :   emptyStmt | expressionStmt | incDecStmt | assignment | shortVarDecl
         ;
+		
+emptyStmt: ;
 
-returnStmt :
-        RETURN ( expressionList ) ;
+labeledStmt: label ':' statement;
+label: Identifier;
 
-breakStmt :
-        BREAK ( label ) ;
+expressionStmt: expression;
 
-continueStmt:
-        CONTINUE ( label ) ;
-
-gotoStmt:
-        GOTO ( label ) ;
+incDecStmt: expression ( '++' | '--' );
+assignment: expressionList assignOp expressionList;
+assignOp: (addOp | mulOp )? '=';
+ifStmt: 'if' ( simpleStmt ';' )? expression block ( 'else' ( ifStmt | block ) )? ;
 
 forStmt
         :   FOR condition block
@@ -481,6 +468,20 @@ rangeClause
         :   expressionList '=' RANGE expression
         |   identifierList ':=' RANGE expression
         ;
+		
+goStmt: 'go' expression;
+
+returnStmt :
+        RETURN ( expressionList )? ;
+
+breakStmt :
+        BREAK ( label )? ;
+
+continueStmt:
+        CONTINUE ( label )? ;
+
+gotoStmt:
+        GOTO label ;
 
 // the goal symbol of this grammar
 sourceFile
