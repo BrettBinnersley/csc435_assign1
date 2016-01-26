@@ -405,15 +405,31 @@ arguments
         ;
 
 expression
-        :   unaryExpr | expression binaryOp expression
+        :   orderOrExpression
         ;
 
 unaryExpr
         : primaryExpr | unaryOp unaryExpr
         ;
 
-binaryOp:
-      '||' | '&&' | relOp | addOp | mulOp
+orderOrExpression:
+      orderOrExpression '||' orderAndExpression | orderAndExpression
+      ;
+
+orderAndExpression:
+      orderAndExpression '&&' orderRelExpression | orderRelExpression
+      ;
+
+orderRelExpression:
+      orderRelExpression relOp orderAddExpression | orderAddExpression
+      ;
+
+orderAddExpression:
+      orderAddExpression addOp orderMulExpression | orderMulExpression
+      ;
+
+orderMulExpression:
+      unaryExpr mulOp orderMulExpression | unaryExpr
       ;
 
 relOp:
