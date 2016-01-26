@@ -1,3 +1,4 @@
+//
 // Goo (a subset of Go) language grammar
 //
 // The goal symbol for the grammar is:             sourceFile
@@ -9,10 +10,26 @@
 // Original Author: Nigel Horspool, January 2016
 //
 //
+//
+//
+//
+//
+//
+//
+//
 // This file has been edited by the following students for the purpose of our assignment.
 //
 // Brett Binnersley, V00776751
 // Sebastien Guillemot, V00741620
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 
 grammar Goo;
@@ -394,11 +411,11 @@ expression
 unaryExpr
         : primaryExpr | unaryOp unaryExpr
         ;
-		
+
 binaryOp:
       '||' | '&&' | relOp | addOp | mulOp
       ;
-	  
+
 relOp:
       '==' | '!=' | '<' | '<=' | '>' | '>='
       ;
@@ -418,7 +435,7 @@ unaryOp:
 conversion
         :   type '(' expression ','? ')'
         ;
-		
+
 
 statement
         :   declaration | labeledStmt | simpleStmt |
@@ -429,7 +446,7 @@ statement
 simpleStmt
         :   emptyStmt | expressionStmt | incDecStmt | assignment | shortVarDecl
         ;
-		
+
 emptyStmt: ;
 
 labeledStmt: label ':' statement;
@@ -468,7 +485,7 @@ rangeClause
         :   expressionList '=' RANGE expression
         |   identifierList ':=' RANGE expression
         ;
-		
+
 goStmt: 'go' expression;
 
 returnStmt :
