@@ -291,6 +291,7 @@ operand
 literal
         :   basicLit
         |   compositeLit
+		|   functionLit
         ;
 
 basicLit
@@ -384,8 +385,20 @@ arguments
         |   '(' type ',' expressionList ','? ')'
         ;
 
+expression
+        :   unaryExpr | expression binaryOp expression
+        ;
+
+unaryExpr
+        : primaryExpr | unaryOp unaryExpr
+        ;
+		
+binaryOp:
+      '||' | '&&' | relOp | addOp | mulOp
+      ;
+	  
 relOp:
-      '==' | '!=' | '<' | '<=' | '>' | '>=' .
+      '==' | '!=' | '<' | '<=' | '>' | '>='
       ;
 
 addOp:
@@ -397,41 +410,13 @@ mulOp:
     ;
 
 unaryOp:
-    '+' | '-' | '!' | '^' | '*' | '&' | '<-'
+    '+' | '-' | '!' | '^' | '*' | '&'
     ;
-
-binaryOp:
-      '||' | '&&' | relOp | addOp | mulOp
-      ;
-
-expression
-        :   unaryExpr | expression binaryOp expression
-        ;
-
-unaryExpr
-        : primaryExpr | unaryOp unaryExpr
-        ;
 
 conversion
         :   type '(' expression ','? ')'
         ;
-
-emptyStmt: ;
-
-labeledStmt: label ':' statement;
-
-label: Identifier;
-
-expressionStmt: expression;
-
-incDecStmt: expression ( '++' | '--' );
-assignOp: (addOp | mulOp ) '=';
-assignment: expressionList assignOp expressionList;
-ifStmt: 'if' ( simpleStmt ';' ) expression block ( 'else' ( ifStmt | block ) ) ;
-
-
-goStmt: 'go' expression;
-
+		
 
 statement
         :   declaration | labeledStmt | simpleStmt |
@@ -440,8 +425,23 @@ statement
         ;
 
 simpleStmt
-        :    emptyStmt | expressionStmt | incDecStmt | assignment | shortVarDecl
+        :   emptyStmt | expressionStmt | incDecStmt | assignment | shortVarDecl
         ;
+		
+emptyStmt: ;
+
+labeledStmt: label ':' statement;
+label: Identifier;
+
+expressionStmt: expression;
+
+incDecStmt: expression ( '++' | '--' );
+assignment: expressionList assignOp expressionList;
+assignOp: (addOp | mulOp ) '=';
+ifStmt: 'if' ( simpleStmt ';' ) expression block ( 'else' ( ifStmt | block ) ) ;
+
+
+goStmt: 'go' expression;
 
 returnStmt :
         RETURN ( expressionList ) ;
