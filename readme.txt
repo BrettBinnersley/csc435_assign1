@@ -12,5 +12,5 @@ The project uses Antlr4 to generate .java files from the Goo.g4 file.
 
 To use:
 antlr4 Goo.g4
-javac *.java
+javac *.java -classpath antlr-4.5.1-complete.jar
 grun Goo sourceFile -gui <MYFILE.GO>
