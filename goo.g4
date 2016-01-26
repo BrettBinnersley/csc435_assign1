@@ -22,6 +22,11 @@
 // Brett Binnersley, V00776751
 // Sebastien Guillemot, V00741620
 //
+// To use:
+// antlr4 Goo.g4
+// javac *.java -classpath antlr-4.5.1-complete.jar  *classpath is required for linking.
+// grun Goo sourceFile -gui <MYFILE.GO>
+//
 //
 //
 //
