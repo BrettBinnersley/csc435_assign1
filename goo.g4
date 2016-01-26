@@ -573,7 +573,7 @@ RBRACE:     '}' ;
 SEMI:       ';' ;
 
 Identifier
-        :   [a-zA-Z][a-zA-Z0-9]*
+        :   [a-zA-Z_][a-zA-Z0-9_]*
         ;
 
 ImaginaryLit
